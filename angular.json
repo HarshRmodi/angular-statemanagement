@@ -62,7 +62,9 @@
         "serve": {
           "builder": "@angular-devkit/build-angular:dev-server",
           "options": {
-            "browserTarget": "angular-state-management:build"
+            "browserTarget": "angular-state-management:build",
+            "proxyConfig": "src/proxy.conf.json"
+
           },
           "configurations": {
             "production": {
@@ -119,6 +121,10 @@
           }
         }
       }
-    }},
-  "defaultProject": "angular-state-management"
+    }
+  },
+  "defaultProject": "angular-state-management",
+  "cli": {
+    "defaultCollection": "@ngrx/schematics"
+  }
 }
