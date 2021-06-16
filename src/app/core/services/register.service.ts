@@ -11,8 +11,10 @@ const REST_API_SERVER = environment.baseUrl;
   providedIn: 'root'
 })
 export class RegisterService {
-
-  constructor(public http: HttpClient) { }
+  public http: HttpClient
+  constructor(public httpClient: HttpClient, handler: HttpBackend) {
+    this.http = new HttpClient(handler);
+  }
 
   register(user: any) {
     debugger
@@ -20,7 +22,7 @@ export class RegisterService {
     return user;
     // const httpHeaders = new HttpHeaders();
     // httpHeaders.set('Content-Type', 'application/json');
-    // return this.http.post<Register>(REST_API_SERVER + '/register', user, { headers: httpHeaders })
+    // return this.httpClient.post<Register>(REST_API_SERVER + '/register', user, { headers: httpHeaders })
     //     .pipe(
     //         map((res: Register) => {
     //             return res;

@@ -8,8 +8,9 @@ import { reducers, metaReducers } from './reducers';
 import { StoreDevtoolsModule } from '@ngrx/store-devtools';
 import { environment } from '../environments/environment';
 import { RegisterModule } from './pages/register/register.module';
-import { HttpClientModule } from '@angular/common/http';
+import { HttpClientModule, HTTP_INTERCEPTORS } from '@angular/common/http';
 import { EffectsModule } from '@ngrx/effects';
+import { InterceptService } from './intercept/intercept.service';
 
 @NgModule({
   declarations: [
@@ -24,7 +25,13 @@ import { EffectsModule } from '@ngrx/effects';
     HttpClientModule,
     RegisterModule,
   ],
-  providers: [],
+  providers: [
+    {
+      provide: HTTP_INTERCEPTORS,
+      useClass: InterceptService,
+      multi: true
+    },
+  ],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
